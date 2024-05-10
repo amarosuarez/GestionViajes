@@ -1,0 +1,7 @@
+menu que contenga :
+Ver un listado de todos los viajes disponibles, mostrando el lugar, la fecha y el precio de cada uno.
+Añadir un nuevo viaje especificando el lugar, la fecha (en formato DD/MM/AAAA) y el precio.
+Modificar el precio o la fecha de un viaje existente, seleccionando el viaje por su lugar.
+Eliminar un viaje existente, seleccionándolo por su lugar.
+Guardar los cambios realizados en un archivo de texto.
+Salir del programa.
