@@ -115,19 +115,13 @@ public class Principal {
 		do {
 			System.out.println("Año del viaje:");
 			año = sc.nextInt();
-			if (año < 1900 || año > 2999)
+			if (año < 2023 || año > 2999)
 				System.out.println("Ingrese un año válido (entre 1900 y 2999).");
 		} while (año < 1900 || año > 2999);
 
 		String fecha = dia + "/" + mes + "/" + año;
-		System.out.println("\n╔═════════════════════════════════════════════╗");
-		System.out.println("║             Nuevos datos del viaje          ║");
-		System.out.println("╠═════════════════════════════════════════════╣");
-		System.out.println("║  Lugar: " + lugar);
-		System.out.println("║  Fecha: " + fecha);
-		System.out.println("║  Precio: $" + precio);
-		System.out.println("╚═════════════════════════════════════════════╝\n");
-
+	//	Viaje viaje = new Viaje(lugar, fecha, precio);
+// llamr nuevo viaje 
 	}
 
 	/**
