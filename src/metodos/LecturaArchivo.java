@@ -94,7 +94,7 @@ public class LecturaArchivo {
 		BufferedWriter in = null;
 
 		try {
-			in = new BufferedWriter(new FileWriter("src\\archivos\\datosTurismo.txt"));
+			in = new BufferedWriter(new FileWriter("src\\archivos\\datosTurismo.txt",true));
 			in.write(lugar + "::" + fecha + "::" + precio);
 
 		} catch (IOException e) {
