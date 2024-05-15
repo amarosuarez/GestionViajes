@@ -23,11 +23,11 @@ public class Principal {
 				break;
 			}
 			case 2: {
-				nuevoViejae(sc);
+				nuevoViejaes(sc);
 				break;
 			}
 			case 3: {
-				modificarViaje(sc);
+				modificarViajes(sc);
 				break;
 			}
 			case 4: {
@@ -74,7 +74,7 @@ public class Principal {
 	}
 
 	private static void imprimirViajes() {
-		System.out.println("Por implementar");
+		ArrayViajes.mostrarViajes();
 
 	}
 
@@ -84,7 +84,7 @@ public class Principal {
 	 * 
 	 * @param sc
 	 */
-	private static void nuevoViejae(Scanner sc) {
+	private static void nuevoViejaes(Scanner sc) {
 		double precio;
 		int dia, mes, año;
 		System.out.println("Ingrese el lugar del viaje:");
@@ -120,8 +120,8 @@ public class Principal {
 		} while (año < 1900 || año > 2999);
 
 		String fecha = dia + "/" + mes + "/" + año;
-	//	Viaje viaje = new Viaje(lugar, fecha, precio);
-// llamr nuevo viaje 
+              Viaje viaje = new Viaje(lugar, fecha, precio);
+              Viaje.nuevoViaje(viaje);
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class Principal {
 	 * 
 	 * @param sc
 	 */
-	public static void modificarViaje(Scanner sc) {
+	public static void modificarViajes(Scanner sc) {
 		int dia = 0;
 		int mes = 0;
 		int año = 0;
@@ -167,14 +167,8 @@ public class Principal {
 		} while (año < 1900 || año > 2999);
 
 		String fecha = dia + "/" + mes + "/" + año;
-
-		System.out.println("\n╔═════════════════════════════════════════════╗");
-		System.out.println("║             Nuevos datos del viaje          ║");
-		System.out.println("╠═════════════════════════════════════════════╣");
-		System.out.println("║  Lugar: " + lugar);
-		System.out.println("║  Fecha: " + fecha);
-		System.out.println("║  Precio: $" + precio);
-		System.out.println("╚═════════════════════════════════════════════╝\n");
+        Viaje viaje = new Viaje(lugar, fecha, precio);
+        Viaje.modificarViaje(viaje);
 
 	}
 
@@ -187,5 +181,7 @@ public class Principal {
 		System.out.println("Introduzca el lugar del viaje  para eliminarlo:");
 		String lugar = sc.next();
 		System.out.println("el lugar es :" + lugar);
+	    Viaje viaje = new Viaje(lugar);
+	    Viaje.eliminarViaje(viaje);
 	}
 }
