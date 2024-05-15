@@ -3,6 +3,8 @@ package metodos;
 import java.util.ArrayList;
 import java.util.List;
 
+import objetos.Viaje;
+
 /**
  * Clase que contendra el listado de viajes disponibles con sus respectivos datos.
  */
