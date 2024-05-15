@@ -121,7 +121,7 @@ public class Principal {
 
 		String fecha = dia + "/" + mes + "/" + año;
 		Viaje viaje = new Viaje(lugar, fecha, precio);
-		System.out.println("Se ha añadido un nuevo viaje?" + ArrayViajes.nuevoViaje(viaje));
+		System.out.println("Se ha añadido un nuevo viaje ? " + ArrayViajes.nuevoViaje(viaje));
 	}
 
 	/**
@@ -168,7 +168,7 @@ public class Principal {
 
 		String fecha = dia + "/" + mes + "/" + año;
 		Viaje viaje = new Viaje(lugar, fecha, precio);
-		System.out.println("Se ha modificado viaje?" + ArrayViajes.modificarViaje(viaje));
+		System.out.println("Se ha modificado viaje ? " + ArrayViajes.modificarViaje(viaje));
 
 	}
 
@@ -182,6 +182,6 @@ public class Principal {
 		String lugar = sc.next();
 		System.out.println("el lugar es :" + lugar);
 		Viaje viaje = new Viaje(lugar);
-		System.out.println("Se ha eliminado un viaje?" + ArrayViajes.eliminarViaje(viaje));
+		System.out.println("Se ha eliminado un viaje ? " + ArrayViajes.eliminarViaje(viaje));
 	}
 }
