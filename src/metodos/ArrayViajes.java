@@ -61,6 +61,7 @@ public class ArrayViajes {
 			if (viaje.equals(listaViajes.get(indice))) {
 				encontrado = true;
 			}
+			indice++;
 		}
 
 		// Devuelve si se ha encontrado un viaje
