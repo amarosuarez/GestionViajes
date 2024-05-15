@@ -9,7 +9,7 @@ import java.util.List;
 public class ArrayViajes {
 	
 static List<Viaje> listaViajes = new ArrayList<>();
-
+// Funcion que muestra los viajes
 public static void mostrarViajes() {
 	for ( Viaje viaje : listaViajes) {
 		System.out.println(viaje);
