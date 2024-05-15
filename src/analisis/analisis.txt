@@ -1,0 +1,12 @@
+Viaje:
+	- destino: String
+	- fecha: String
+	- precio: int
+------------------------------
+	+ Viaje(String destino, String fecha, int precio)
+	+ getDestino(): String
+	+ getFecha(): String
+	+ getPrecio(): int
+	+ setDestino(String destino): void
+	+ setFecha(String fecha): void
+	+ setPrecio(int precio): void
