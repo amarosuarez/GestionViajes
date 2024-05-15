@@ -120,8 +120,8 @@ public class Principal {
 		} while (año < 1900 || año > 2999);
 
 		String fecha = dia + "/" + mes + "/" + año;
-              Viaje viaje = new Viaje(lugar, fecha, precio);
-              ArrayViajes.nuevoViaje(viaje);
+		Viaje viaje = new Viaje(lugar, fecha, precio);
+		System.out.println("Se ha añadido un nuevo viaje ? " + ArrayViajes.nuevoViaje(viaje));
 	}
 
 	/**
@@ -167,8 +167,8 @@ public class Principal {
 		} while (año < 1900 || año > 2999);
 
 		String fecha = dia + "/" + mes + "/" + año;
-        Viaje viaje = new Viaje(lugar, fecha, precio);
-        ArrayViajes.modificarViaje(viaje);
+		Viaje viaje = new Viaje(lugar, fecha, precio);
+		System.out.println("Se ha modificado viaje ? " + ArrayViajes.modificarViaje(viaje));
 
 	}
 
@@ -181,7 +181,7 @@ public class Principal {
 		System.out.println("Introduzca el lugar del viaje  para eliminarlo:");
 		String lugar = sc.next();
 		System.out.println("el lugar es :" + lugar);
-	    Viaje viaje = new Viaje(lugar);
-	    ArrayViajes.eliminarViaje(viaje);
+		Viaje viaje = new Viaje(lugar);
+		System.out.println("Se ha eliminado un viaje ? " + ArrayViajes.eliminarViaje(viaje));
 	}
 }
