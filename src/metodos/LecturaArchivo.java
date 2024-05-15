@@ -85,4 +85,4 @@ public class LecturaArchivo {
 	
 	} // Cierre del método
 
-} // Cierre de la clase
+} // Cierre de la clase 
