@@ -2,6 +2,9 @@ package principal;
 
 import java.util.Scanner;
 
+import metodos.ArrayViajes;
+import objetos.Viaje;
+
 /**
  * Classe principal donde se almacena el main se recojen datos y se llama a las
  * funciones de cada clase
@@ -27,11 +30,11 @@ public class Principal {
 				break;
 			}
 			case 3: {
-				modificarViajes(sc);
+			//	modificarViajes(sc);
 				break;
 			}
 			case 4: {
-				eliminarViajes(sc);
+			//	eliminarViajes(sc);
 				break;
 			}
 			case 5: {
@@ -72,7 +75,9 @@ public class Principal {
 		} while (opcion < 0 && opcion > 5);
 		return opcion;
 	}
-
+/**
+ * Esta funcion imprimi la listade viajes 
+ */
 	private static void imprimirViajes() {
 		ArrayViajes.mostrarViajes();
 
@@ -129,7 +134,7 @@ public class Principal {
 	 * parametros de entrada )
 	 * 
 	 * @param sc
-	 */
+	 *//*
 	public static void modificarViajes(Scanner sc) {
 		int dia = 0;
 		int mes = 0;
@@ -171,17 +176,18 @@ public class Principal {
 		System.out.println("Se ha modificado viaje ? " + ArrayViajes.modificarViaje(viaje));
 
 	}
-
+*/
 	/**
 	 * Elimina un viaje llama al array o list donde se almacena los viajes
 	 * 
 	 * @param sc
 	 */
+	/*
 	public static void eliminarViajes(Scanner sc) {
 		System.out.println("Introduzca el lugar del viaje  para eliminarlo:");
 		String lugar = sc.next();
 		System.out.println("el lugar es :" + lugar);
 		Viaje viaje = new Viaje(lugar);
 		System.out.println("Se ha eliminado un viaje ? " + ArrayViajes.eliminarViaje(viaje));
-	}
+	}*/
 }
