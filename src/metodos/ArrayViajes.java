@@ -34,6 +34,9 @@ public class ArrayViajes {
 		if (!buscaViajeIgual(viaje)) {
 			// Añadimos el viaje
 			listaViajes.add(viaje);
+			
+			// Añadimos el viaje al fichero
+			LecturaArchivo.escrituraViaje(viaje);
 
 			// Cambiamos el boolean+
 			anyadido = true;
