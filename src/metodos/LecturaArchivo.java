@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import objetos.Viaje;
+
 public class LecturaArchivo {
 
 	public List<Viaje> obetenerViajes() {
@@ -15,7 +17,7 @@ public class LecturaArchivo {
 		List<Viaje> listaViajes = new LinkedList<>();
 
 		// Creamos un objeto tipo viaje sin parámetros
-		Viaje viaje = new Viaje();
+		Viaje viaje;
 		
 		// Variable donde guardaremos el destino del viaje
 		String destino = "";
