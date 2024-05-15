@@ -1,5 +1,7 @@
 package principal;
 
+import java.time.LocalDateTime;
+import java.time.Year;
 import java.util.Scanner;
 
 import metodos.ArrayViajes;
@@ -28,7 +30,7 @@ public class Principal {
 				break;
 			}
 			case 2: {
-				nuevoViejaes(sc);
+				nuevoViaje(sc);
 				break;
 			}
 			case 3: {
@@ -92,48 +94,81 @@ public class Principal {
 	 * 
 	 * @param sc
 	 */
-	private static void nuevoViejaes(Scanner sc) {
+	private static void nuevoViaje(Scanner sc) {
 		double precio;
 		int dia, mes, año;
+		String lugar = "";
+		
+		LocalDateTime hoy = LocalDateTime.now();
+		int actualDay = hoy.getDayOfMonth();
+		int actualMonth = hoy.getMonthValue();
+		int actualYear = hoy.getYear();
+		
+		sc.nextLine();
+		
 		System.out.println("Ingrese el lugar del viaje:");
-		String lugar = sc.next();
-
-		System.out.println("\n" + "Ingrese los siguientes datos:");
+		lugar = sc.nextLine();
+	
 		do {
-			System.out.println("Precio del viaje:");
+			System.out.println("Precio del viaje (Debe ser mayor que 0)");
 			precio = sc.nextDouble();
-			if (precio <= 0)
-				System.out.println("El precio debe ser mayor que cero.");
 		} while (precio <= 0);
-
+		
 		do {
-			System.out.println("Día del viaje:");
-			dia = sc.nextInt();
-			if (dia < 0 || dia > 31)
-				System.out.println("Ingrese un día válido (entre 1 y 31).");
-		} while (dia < 0 || dia > 31);
-
-		do {
-			System.out.println("Mes del viaje:");
-			mes = sc.nextInt();
-			if (mes < 1 || mes > 12)
-				System.out.println("Ingrese un mes válido (entre 1 y 12).");
-		} while (mes < 1 || mes > 12);
-
-		do {
-			System.out.println("Año del viaje:");
+			System.out.println("Año del viaje (Debe ser mayor o igual que " + actualYear + ")");
 			año = sc.nextInt();
-			if (año < 2023 || año > 2999)
-				System.out.println("Ingrese un año válido (entre 1900 y 2999).");
-		} while (año < 1900 || año > 2999);
+		} while (año < actualYear);
+		
+		do {
+			System.out.println("Mes del viaje (Entre 1 y 12)");
+			mes = sc.nextInt();
+		} while (!mesDentroRango(mes, actualMonth, año, actualYear));
+		
+		do {
+			System.out.println("Día del viaje");
+			dia = sc.nextInt();
+		} while (dia < 1 || dia >= diaMaxMes(mes, año) || (año == actualYear && mes == actualMonth && dia < actualDay) );
 
-		String fecha = dia + "/" + mes + "/" + año;
+		
+		String diaS = (dia < 10 ? "0" : "") + dia;
+		String mesS = (mes < 10 ? "0" : "") + mes;
+		
+
+		String fecha = diaS + "/" + mesS + "/" + año;
+		
 		Viaje viaje = new Viaje(lugar, fecha, precio);
 		if (ArrayViajes.nuevoViaje(viaje)) {
 			System.out.println("Se ha añadido el viaje. ");
 		} else {
 			System.out.println("No se ha añadido el viaje. ");
 		}
+	}
+	
+	public static int diaMaxMes(int mes, int anio) {
+		int diaMax = 31;
+		if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+			diaMax = 30;
+		} else if (mes == 2) {
+			if (Year.isLeap(anio)) {
+				diaMax = 29;
+			} else {
+				diaMax = 28;
+			}
+		}
+		
+		return diaMax;
+	}
+	
+	public static boolean mesDentroRango(int mes, int actualMonth, int anio, int actualYear) {
+		boolean correcto = false;
+		
+		if (anio == actualYear && mes >= actualMonth) {
+			correcto = true;
+		} else if (anio != actualYear && mes >= 1 && mes <= 12) {
+			correcto = true;
+		}
+		
+		return correcto;
 	}
 
 	/**
