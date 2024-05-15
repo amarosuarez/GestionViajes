@@ -128,4 +128,26 @@ public class Viaje {
 		// Devuelve la información
 		return info;
 	}
+	
+	/**
+	 * Función que comprueba si un viaje es igual, cuando su lugar y fecha coinciden
+	 * 
+	 * @return Devuelve true en caso de que el viaje sea igual y false en caso contrario
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		// Variable donde se almacena si el viaje es igual
+		boolean esIgual = false;
+		
+		// Creamos un objeto Viaje
+		Viaje viaje = (Viaje) obj;
+		
+		// Comprobamos si es igual
+		if (this.lugar.equals(viaje.lugar) && this.fecha.equals(viaje.fecha)) {
+			esIgual = true;
+		}
+		
+		// Devolvemos si el viaje es igual
+		return esIgual;
+	}
 }
