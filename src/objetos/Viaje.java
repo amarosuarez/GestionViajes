@@ -121,9 +121,10 @@ public class Viaje {
 		String info = "";
 		
 		// Almacenamos la información
+		info += "\n------✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️------";
 		info += "\nLugar: " + this.lugar;
 		info += "\nFecha: " + this.fecha;
-		info += "\nPrecio: " + this.precio;
+		info += "\nPrecio: " + this.precio + " €";
 		
 		// Devuelve la información
 		return info;
