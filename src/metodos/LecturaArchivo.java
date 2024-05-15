@@ -11,7 +11,7 @@ import objetos.Viaje;
 
 public class LecturaArchivo {
 
-	public List<Viaje> obetenerViajes() {
+	public static List<Viaje> obetenerViajes() {
 		
 		// Lista donde vamos a guardar los viajes
 		List<Viaje> listaViajes = new LinkedList<>();
