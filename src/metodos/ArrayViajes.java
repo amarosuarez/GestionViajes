@@ -11,7 +11,7 @@ import objetos.Viaje;
  */
 public class ArrayViajes {
 
-	static List<Viaje> listaViajes = new ArrayList<>();
+	public static List<Viaje> listaViajes = new ArrayList<>();
 
 // Funcion que muestra los viajes
 	public static void mostrarViajes() {
