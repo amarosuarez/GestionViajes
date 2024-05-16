@@ -59,7 +59,7 @@ public class ArrayViajes {
 		int opcion;
 
 		// Llamamos a la función que busca los viajes por lugar
-		listaViajes = buscaViajesLugar(lugar);
+		listaViajes = buscaViajeLugar(lugar);
 
 		// Comprobamos que la lista no esté vacía
 		if (!listaViajes.isEmpty()) {
