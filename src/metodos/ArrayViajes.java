@@ -1,9 +1,8 @@
 package metodos;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
 
 import objetos.Viaje;
 
@@ -48,14 +47,26 @@ public class ArrayViajes {
 		return anyadido;
 	}
 
+	/**
+	 * Función que modifica un viaje según su lugar
+	 * 
+	 * @param lugar Lugar al que buscar el viaje
+	 * @return Devuelve si se ha modificado el viaje
+	 */
 	public static boolean modificaViaje(String lugar) {
 		// Variable donde se almacena si se ha modificado el viaje
 		boolean modificado = false;
 
+		// Objeto donde se almacena el viaje a modificar
+		Viaje viaje;
+		
 		// Lista donde se almacenará los viajes con ese destino
 		List<Viaje> listaViajes = new ArrayList<>();
 		
 		// Variable donde se almacenará el viaje selecionado
+		int viajeSeleccionado;
+		
+		// Variable donde se almacenará la opción a modificar
 		int opcion;
 
 		// Llamamos a la función que busca los viajes por lugar
@@ -72,10 +83,33 @@ public class ArrayViajes {
 			muestraViajes(listaViajes);
 			
 			do {
-				opcion = leeNumero("¿Qué viaje deseas modificar?");
-			} while (opcion <= 0 || opcion >= numViajes);
+				viajeSeleccionado = Utiles.leeNumero("¿Qué viaje deseas modificar?");
+			} while (viajeSeleccionado <= 0 || viajeSeleccionado >= numViajes);
 			
-			// Llama a la que modifica
+			// Inicializamos el objeto viaje al viaje a modificar
+			viaje = listaViajes.get(viajeSeleccionado);
+			
+			do {
+				// Mostramos el menú de opciones modificables y leemos la opción
+				opcion = Utiles.leeNumero("¿Qué deseas modificar?\n1. Precio\n2. Fecha\nPara salir pulse cualquier otro número");
+				
+				switch (opcion) {
+				case 1: // Modifica el precio
+					modificaPrecio(viaje);
+					break;
+				case 2: // Modifica la fecha
+					modificaFecha(viaje);
+					break;
+				default: // Sale del programa
+					System.out.println("Saliendo...");
+					break;
+				}
+				
+			} while (opcion == 1 || opcion == 2);
+			
+			modificado = true;
+		} else {
+			System.out.println("No se han encontrado viajes con ese lugar");
 		}
 
 		// Devolvemos si se ha modificado el viaje
@@ -83,40 +117,60 @@ public class ArrayViajes {
 	}
 	
 	/**
-	 * Función que muestra un mensaje y lee un número
+	 * Función que modifica la fecha de un viaje
 	 * 
-	 * @param mensaje Mensaje a mostrar al usuario
-	 * @return Devuelve el número leído
+	 * @param viaje Viaje a modificar la fecha
 	 */
-	private static int leeNumero(String mensaje) {
-		// Variable donde se almacena el número a leer
-		int num = -1;
+	private static void modificaFecha(Viaje viaje) {
+		int dia, mes, año;
 		
-		boolean valorCorrecto = false;
-		
-		// Creamos un Scanner 
-		Scanner sc = new Scanner(System.in);
+		LocalDateTime hoy = LocalDateTime.now();
+		int actualDay = hoy.getDayOfMonth();
+		int actualMonth = hoy.getMonthValue();
+		int actualYear = hoy.getYear();
 		
 		do {
-			// Mostramos el mensaje
-			try {
-				System.out.println(mensaje);
-				num = sc.nextInt();
-				valorCorrecto = true;
-			} catch(InputMismatchException e) {
-				valorCorrecto = false;
-				System.out.println("Valor incorrecto");
-			}
-		} while (!valorCorrecto);
+			año = Utiles.leeNumero("Año del viaje (Debe ser mayor o igual que " + actualYear + ")");
+		} while (año < actualYear);
 		
-		// Limpiamos y cerramos el Scanner
-		sc.nextLine();
-		sc.close();
+		do {
+			mes = Utiles.leeNumero("Mes del viaje (Entre 1 y 12)");
+		} while (!Utiles.mesDentroRango(mes, actualMonth, año, actualYear));
 		
-		// Devolvemos el número
-		return num;
-	}
+		do {
+			dia = Utiles.leeNumero("Día del viaje");
+		} while (dia < 1 || dia >= Utiles.diaMaxMes(mes, año) || (año == actualYear && mes == actualMonth && dia < actualDay) );
 
+		String diaS = (dia < 10 ? "0" : "") + dia;
+		String mesS = (mes < 10 ? "0" : "") + mes;
+		
+
+		String fecha = diaS + "/" + mesS + "/" + año;
+		
+		viaje.setFecha(fecha);
+	}
+	
+	/**
+	 * Función que modifica el precio de un viaje
+	 * 
+	 * @param viaje Viaje al que se le modificará el precio
+	 */
+	private static void modificaPrecio(Viaje viaje) {
+		// Variable donde se almacenará el nuevo precio
+		double precio;
+		
+		do {
+			// Le pedimos el nuevo precio
+			precio = Utiles.leeDoble("Introduzca el nuevo precio (Debe ser mayor que 0)");
+		} while (precio > 0);
+		
+		// Cambiamos el precio
+		viaje.setPrecio(precio);
+		
+		// Mostramos el mensaje
+		System.out.println("Precio modificado");
+	}
+	
 	/**
 	 * Función que muestra los viajes encontrados por pantalla
 	 * 
