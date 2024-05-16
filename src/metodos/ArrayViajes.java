@@ -67,5 +67,21 @@ public class ArrayViajes {
 		// Devuelve si se ha encontrado un viaje
 		return encontrado;
 	}
+	
+	private static List<Viaje> buscaViajeLugar(String lugar) {
+		
+		// CReamos una nueva lista para buscar los viajes
+		List<Viaje> listaEncontrados = new ArrayList<>();
+		
+		// Creamos un bucle for each para que conferme encuentre un viaje lo añada
+		for ( Viaje viaje : listaViajes) {
+			if ( viaje.getLugar().equalsIgnoreCase(lugar)) {
+				listaViajes.add(viaje);
+			}
+		}
+
+		// Devuelve los viajes encontrados
+		return listaEncontrados;
+	}
 
 }
