@@ -47,7 +47,7 @@ public class Utiles {
 		// Variable donde se almacena el número a leer
 		int num = -1;
 		
-		boolean valorCorrecto = false;
+		boolean valorCorrecto = true;
 		
 		// Creamos un Scanner 
 		Scanner sc = new Scanner(System.in);
@@ -57,15 +57,15 @@ public class Utiles {
 			try {
 				System.out.println(mensaje);
 				num = sc.nextInt();
-				valorCorrecto = true;
 			} catch(InputMismatchException e) {
 				valorCorrecto = false;
 				System.out.println("Valor incorrecto");
+			} finally {
+				sc.next();
 			}
 		} while (!valorCorrecto);
 		
 		// Limpiamos y cerramos el Scanner
-		sc.nextLine();
 		sc.close();
 		
 		// Devolvemos el número
@@ -100,7 +100,6 @@ public class Utiles {
 		} while (!valorCorrecto);
 		
 		// Limpiamos y cerramos el Scanner
-		sc.nextLine();
 		sc.close();
 		
 		// Devolvemos el número

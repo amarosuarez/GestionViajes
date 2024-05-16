@@ -34,7 +34,7 @@ public class Principal {
 				break;
 			}
 			case 3: {
-				// modificarViajes(sc);
+				modificarViaje(sc);
 				break;
 			}
 			case 4: {
@@ -54,6 +54,13 @@ public class Principal {
 		} while (opcion != 5);
 	}
 
+	public static void modificarViaje(Scanner sc) {
+		sc.nextLine();
+		System.out.println("Indica el lugar del viaje");
+		String lugar = sc.nextLine();
+		ArrayViajes.modificaViaje(lugar);
+	}
+	
 	/**
 	 * funcion encargada de imprimir el menu y registar una oppcion escogida por el
 	 * usuario

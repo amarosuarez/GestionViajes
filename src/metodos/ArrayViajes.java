@@ -84,10 +84,10 @@ public class ArrayViajes {
 			
 			do {
 				viajeSeleccionado = Utiles.leeNumero("¿Qué viaje deseas modificar?");
-			} while (viajeSeleccionado <= 0 || viajeSeleccionado >= numViajes);
+			} while (viajeSeleccionado <= 0 || viajeSeleccionado > numViajes);
 			
 			// Inicializamos el objeto viaje al viaje a modificar
-			viaje = listaViajes.get(viajeSeleccionado);
+			viaje = listaViajes.get(viajeSeleccionado-1);
 			
 			do {
 				// Mostramos el menú de opciones modificables y leemos la opción
@@ -220,7 +220,7 @@ public class ArrayViajes {
 		// Creamos un bucle for each para que conferme encuentre un viaje lo añada
 		for ( Viaje viaje : listaViajes) {
 			if ( viaje.getLugar().equalsIgnoreCase(lugar)) {
-				listaViajes.add(viaje);
+				listaEncontrados.add(viaje);
 			}
 		}
 
