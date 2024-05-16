@@ -251,7 +251,7 @@ public class ArrayViajes {
 			muestraViajes(listaViajes);
 			
 			do {
-				opcion = leeNumero("¿Qué viaje deseas modificar?");
+				opcion = Utiles.leeNumero("¿Qué viaje deseas modificar?");
 			} while (opcion <= 0 || opcion >= numViajes);
 			
 			listaViajes.remove(opcion);
