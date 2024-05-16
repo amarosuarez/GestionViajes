@@ -201,9 +201,10 @@ public class ArrayViajes {
 			} while (opcion <= 0 || opcion >= numViajes);
 			
 			listaViajes.remove(opcion);
+			eliminado = true;
 			
 		} else {
-			System.out.println("El lugar no se ha encontrado en nuestra base de datos");
+			System.out.println("No se ha encontrado nigún viaje con ese destino");
 		}
 
 		// Devolvemos si se ha modificado el viaje
