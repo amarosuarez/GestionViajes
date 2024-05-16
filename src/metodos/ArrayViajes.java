@@ -173,5 +173,40 @@ public class ArrayViajes {
 		// Devuelve los viajes encontrados
 		return listaEncontrados;
 	}
+	public static boolean eliminaViaje(String lugar) {
+		// Variable donde se almacena si se ha modificado el viaje
+		boolean eliminado = false;
 
+		// Lista donde se almacenará los viajes con ese destino
+		List<Viaje> listaViajes = new ArrayList<>();
+		
+		// Variable donde se almacenará el viaje selecionado
+		int opcion;
+
+		// Llamamos a la función que busca los viajes por lugar
+		listaViajes = buscaViajeLugar(lugar);
+
+		// Comprobamos que la lista no esté vacía
+		if (!listaViajes.isEmpty()) {
+			// Mostramos cuantos viajes se han encontrado
+			int numViajes = listaViajes.size();
+
+			System.out.println("Hay " + numViajes + (numViajes > 0 ? " viajes" : " viaje") + " con ese lugar");
+			
+			// Llamamos a la funcion que muestra los viajes encontrados
+			muestraViajes(listaViajes);
+			
+			do {
+				opcion = leeNumero("¿Qué viaje deseas modificar?");
+			} while (opcion <= 0 || opcion >= numViajes);
+			
+			listaViajes.remove(opcion);
+			
+		} else {
+			System.out.println("El lugar no se ha encontrado en nuestra base de datos");
+		}
+
+		// Devolvemos si se ha modificado el viaje
+		return eliminado;
+	}
 }
