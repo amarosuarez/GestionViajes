@@ -1,6 +1,7 @@
 package principal;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Scanner;
 
 import metodos.ArrayViajes;
@@ -197,7 +198,7 @@ public class Principal {
 	 * ArrayViajes.eliminarViaje(viaje)); }
 	 */
 	private static void guardarCambios(Scanner sc) { 
-	LecturaArchivo.escrituraViaje((Viaje) ArrayViajes.listaViajes);
+	LecturaArchivo.escrituraViaje((List<Viaje>) ArrayViajes.listaViajes);
 	}
 
 }
