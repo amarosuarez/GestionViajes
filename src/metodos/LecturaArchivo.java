@@ -87,16 +87,19 @@ public class LecturaArchivo {
 
 	} // Cierre del método
 
-	public static void escrituraViaje(Viaje viaje) {
-		String lugar = viaje.getLugar();
-		String fecha = viaje.getFecha();
-		double precio = viaje.getPrecio();
+	public static void escrituraViaje(List<Viaje> listaViaje) {
+
 		BufferedWriter in = null;
 
 		try {
-			in = new BufferedWriter(new FileWriter("src\\archivos\\datosTurismo.txt", true));
-			in.newLine();
-			in.write(lugar + "::" + fecha + "::" + precio);
+			in = new BufferedWriter(new FileWriter("src\\archivos\\datosTurismo.txt"));
+			for (Viaje viaje : listaViaje) {
+				String lugar = viaje.getLugar();
+				String fecha = viaje.getFecha();
+				double precio = viaje.getPrecio();
+				in.newLine();
+				in.write(lugar + "::" + fecha + "::" + precio);
+			}
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

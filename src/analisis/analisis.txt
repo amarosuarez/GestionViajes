@@ -10,3 +10,16 @@ Viaje:
 	+ setDestino(String destino): void
 	+ setFecha(String fecha): void
 	+ setPrecio(int precio): void
+	+ toString(): String
+	+ equals(Object o): boolean
+	
+ArrayViajes:
+	+ static viajes: List<Viaje>
+------------------------------
+	+ static mostrarViajes(): void
+	+ static nuevoViaje(Viaje viaje): boolean
+	+ static buscaViajeIgual(Viaje viaje): boolean
+	
+LecturaArchivo:
+	+ static obtenerViajes(): List<Viaje>
+	+ static escrituraViaje(): void

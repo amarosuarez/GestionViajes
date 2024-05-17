@@ -1,11 +1,11 @@
 package principal;
 
 import java.time.LocalDateTime;
-import java.time.Year;
 import java.util.Scanner;
 
 import metodos.ArrayViajes;
 import metodos.LecturaArchivo;
+import metodos.Utiles;
 import objetos.Viaje;
 
 /**
@@ -128,12 +128,12 @@ public class Principal {
 		do {
 			System.out.println("Mes del viaje (Entre 1 y 12)");
 			mes = sc.nextInt();
-		} while (!mesDentroRango(mes, actualMonth, año, actualYear));
+		} while (!Utiles.mesDentroRango(mes, actualMonth, año, actualYear));
 		
 		do {
 			System.out.println("Día del viaje");
 			dia = sc.nextInt();
-		} while (dia < 1 || dia >= diaMaxMes(mes, año) || (año == actualYear && mes == actualMonth && dia < actualDay) );
+		} while (dia < 1 || dia >= Utiles.diaMaxMes(mes, año) || (año == actualYear && mes == actualMonth && dia < actualDay) );
 
 		
 		String diaS = (dia < 10 ? "0" : "") + dia;
@@ -148,33 +148,6 @@ public class Principal {
 		} else {
 			System.out.println("No se ha añadido el viaje. ");
 		}
-	}
-	
-	public static int diaMaxMes(int mes, int anio) {
-		int diaMax = 31;
-		if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
-			diaMax = 30;
-		} else if (mes == 2) {
-			if (Year.isLeap(anio)) {
-				diaMax = 29;
-			} else {
-				diaMax = 28;
-			}
-		}
-		
-		return diaMax;
-	}
-	
-	public static boolean mesDentroRango(int mes, int actualMonth, int anio, int actualYear) {
-		boolean correcto = false;
-		
-		if (anio == actualYear && mes >= actualMonth) {
-			correcto = true;
-		} else if (anio != actualYear && mes >= 1 && mes <= 12) {
-			correcto = true;
-		}
-		
-		return correcto;
 	}
 
 	/**
