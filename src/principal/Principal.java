@@ -42,6 +42,10 @@ public class Principal {
 				break;
 			}
 			case 5: {
+				guardarCambios(sc);
+				break;
+			}
+			case 6: {
 				System.out.println("Ha salido del programa");
 				break;
 			}
@@ -53,6 +57,7 @@ public class Principal {
 
 		} while (opcion != 5);
 	}
+
 
 	/**
 	 * funcion encargada de imprimir el menu y registar una oppcion escogida por el
@@ -72,7 +77,8 @@ public class Principal {
 			System.out.println("║ 3. Modificar precio o fecha         ║");
 			System.out.println("║    de un viaje existente            ║");
 			System.out.println("║ 4. Eliminar un viaje existente      ║");
-			System.out.println("║ 5. Salir                            ║");
+			System.out.println("║ 5. Guardar cambios                  ║");
+			System.out.println("║ 6. Salir                            ║");
 			System.out.println("╚═════════════════════════════════════╝");
 
 			opcion = sc.nextInt();
@@ -217,4 +223,8 @@ public class Principal {
 	 * new Viaje(lugar); System.out.println("Se ha eliminado un viaje ? " +
 	 * ArrayViajes.eliminarViaje(viaje)); }
 	 */
+	private static void guardarCambios(Scanner sc) { 
+	LecturaArchivo.escrituraViaje((Viaje) ArrayViajes.listaViajes);
+	}
+
 }
