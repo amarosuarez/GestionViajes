@@ -174,7 +174,11 @@ public class Principal {
 	}
 
 	private static void guardarCambios(Scanner sc) {
-		LecturaArchivo.escrituraViaje((List<Viaje>) ArrayViajes.listaViajes);
+		if (LecturaArchivo.escrituraViaje((List<Viaje>) ArrayViajes.listaViajes)) {
+			System.out.println("Cambios guardados");
+		} else {
+			System.out.println("No se han podido guardar los cambios");
+		}
 	}
 
 }
