@@ -87,8 +87,9 @@ public class LecturaArchivo {
 
 	} // Cierre del método
 
-	public static void escrituraViaje(List<Viaje> listaViaje) {
+	public static boolean escrituraViaje(List<Viaje> listaViaje) {
 
+		boolean escrito = false;
 		BufferedWriter in = null;
 
 		try {
@@ -100,7 +101,7 @@ public class LecturaArchivo {
 				in.write(lugar + "::" + fecha + "::" + precio);
 				in.newLine();
 			}
-
+			escrito = true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,6 +120,6 @@ public class LecturaArchivo {
 				}
 			}
 		}
-
+		return escrito;
 	}
 } // Cierre de la clase
