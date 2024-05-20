@@ -48,6 +48,9 @@ public class Principal {
 				break;
 			}
 			case 6: {
+				// Reinciamos la variable seguir
+				seguir = 's';
+				
 				if (!ArrayViajes.cambiosGuardados()) {
 					System.out.println("Hay cambios sin guardar, ¿desea salir? (S para salir, otra para volver)");
 					
