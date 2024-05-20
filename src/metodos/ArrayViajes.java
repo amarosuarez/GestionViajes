@@ -223,6 +223,35 @@ public class ArrayViajes {
 		return encontrado;
 	}
 	
+	/**
+	 * Función que comprueba si hay un viaje igual y devuelve su indice
+	 * 
+	 * @param viaje Objeto viaje a comparar
+	 * @return Devuelve si se ha encontrado un viaje igual, su indice
+	 */
+	private static int indexViajeIgual(Viaje viaje) {
+		// Variable que almacena si se ha encontrado el viaje
+		boolean encontrado = false;
+		
+		// Variable que almacena el indice donde se ha encontrado el viaje
+		int pos = -1;
+		
+		// Entero donde se almacena el indice
+		int indice = 0;
+
+		// Hacemos un while mientras no se encuentre y no se salga de la longitud
+		while (indice < listaViajes.size() && !encontrado) {
+			if (viaje.equals(listaViajes.get(indice))) {
+				pos = indice;
+				encontrado = true;
+			}
+			indice++;
+		}
+
+		// Devuelve si se ha encontrado un viaje
+		return pos;
+	}
+	
 	private static List<Viaje> buscaViajeLugar(String lugar) {
 		
 		// CReamos una nueva lista para buscar los viajes
@@ -244,30 +273,42 @@ public class ArrayViajes {
 		boolean eliminado = false;
 
 		// Lista donde se almacenará los viajes con ese destino
-		List<Viaje> listaViajes = new ArrayList<>();
+		List<Viaje> listaViajesEliminar = new ArrayList<>();
 		
 		// Variable donde se almacenará el viaje selecionado
 		int opcion;
 
 		// Llamamos a la función que busca los viajes por lugar
-		listaViajes = buscaViajeLugar(lugar);
+		listaViajesEliminar = buscaViajeLugar(lugar);
 
 		// Comprobamos que la lista no esté vacía
-		if (!listaViajes.isEmpty()) {
+		if (!listaViajesEliminar.isEmpty()) {
 			// Mostramos cuantos viajes se han encontrado
-			int numViajes = listaViajes.size();
+			int numViajes = listaViajesEliminar.size();
 
 			System.out.println("Hay " + numViajes + (numViajes > 0 ? " viajes" : " viaje") + " con ese lugar");
 			
 			// Llamamos a la funcion que muestra los viajes encontrados
-			muestraViajes(listaViajes);
+			muestraViajes(listaViajesEliminar);
 			
 			do {
-				opcion = Utiles.leeNumero("¿Qué viaje deseas modificar?");
-			} while (opcion <= 0 || opcion >= numViajes);
+				opcion = Utiles.leeNumero("¿Qué viaje deseas eliminar? (0 para salir)");
+			} while (opcion < 0 || opcion > numViajes);
 			
-			listaViajes.remove(opcion);
-			eliminado = true;
+			// Comprobamos que no quiera salir
+			if (opcion != 0) {
+				Viaje viaje = listaViajesEliminar.get(opcion-1);
+				
+				int indice = indexViajeIgual(viaje);
+				
+				if (indice != -1) {
+					listaViajes.remove(indice);
+					eliminado = true;
+				}
+				
+			} else {
+				System.out.println("Saliendo...");
+			}
 			
 		} else {
 			System.out.println("No se ha encontrado nigún viaje con ese destino");
