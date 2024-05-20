@@ -39,7 +39,7 @@ public class Principal {
 				break;
 			}
 			case 4: {
-				// eliminarViajes(sc);
+				eliminarViaje(sc);
 				break;
 			}
 			case 5: {
@@ -59,17 +59,30 @@ public class Principal {
 		} while (opcion != 6);
 	}
 
+	public static void eliminarViaje(Scanner sc) {
+		sc.nextLine();
+		System.out.println("Indica el lugar del viaje");
+		String lugar = sc.nextLine();
+
+		if (ArrayViajes.eliminaViaje(lugar)) {
+			System.out.println("Viaje eliminado");
+		} else {
+			System.out.println("No se ha eliminado el viaje");
+		}
+	}
+
 	public static void modificarViaje(Scanner sc) {
 		sc.nextLine();
 		System.out.println("Indica el lugar del viaje");
 		String lugar = sc.nextLine();
-		
+
 		if (ArrayViajes.modificaViaje(lugar)) {
 			System.out.println("Viaje modificado");
 		} else {
 			System.out.println("No se ha modificado el viaje");
 		}
 	}
+
 	/**
 	 * funcion encargada de imprimir el menu y registar una oppcion escogida por el
 	 * usuario
@@ -115,44 +128,43 @@ public class Principal {
 		double precio;
 		int dia, mes, año;
 		String lugar = "";
-		
+
 		LocalDateTime hoy = LocalDateTime.now();
 		int actualDay = hoy.getDayOfMonth();
 		int actualMonth = hoy.getMonthValue();
 		int actualYear = hoy.getYear();
-		
+
 		sc.nextLine();
-		
+
 		System.out.println("Ingrese el lugar del viaje:");
 		lugar = sc.nextLine();
-	
+
 		do {
 			System.out.println("Precio del viaje (Debe ser mayor que 0)");
 			precio = sc.nextDouble();
 		} while (precio <= 0);
-		
+
 		do {
 			System.out.println("Año del viaje (Debe ser mayor o igual que " + actualYear + ")");
 			año = sc.nextInt();
 		} while (año < actualYear);
-		
+
 		do {
 			System.out.println("Mes del viaje (Entre 1 y 12)");
 			mes = sc.nextInt();
 		} while (!Utiles.mesDentroRango(mes, actualMonth, año, actualYear));
-		
+
 		do {
 			System.out.println("Día del viaje");
 			dia = sc.nextInt();
-		} while (dia < 1 || dia >= Utiles.diaMaxMes(mes, año) || (año == actualYear && mes == actualMonth && dia < actualDay) );
+		} while (dia < 1 || dia >= Utiles.diaMaxMes(mes, año)
+				|| (año == actualYear && mes == actualMonth && dia < actualDay));
 
-		
 		String diaS = (dia < 10 ? "0" : "") + dia;
 		String mesS = (mes < 10 ? "0" : "") + mes;
-		
 
 		String fecha = diaS + "/" + mesS + "/" + año;
-		
+
 		Viaje viaje = new Viaje(lugar, fecha, precio);
 		if (ArrayViajes.nuevoViaje(viaje)) {
 			System.out.println("Se ha añadido el viaje. ");
@@ -161,53 +173,7 @@ public class Principal {
 		}
 	}
 
-	/**
-	 * modifica un viaje (llam a la funcion resoectiva en la clase y ppon los
-	 * parametros de entrada )
-	 * 
-	 * @param sc
-	 *//*
-		 * public static void modificarViajes(Scanner sc) { int dia = 0; int mes = 0;
-		 * int año = 0; double precio = 0;
-		 * System.out.println("Ingrese el lugar del viaje:"); String lugar = sc.next();
-		 * 
-		 * do { System.out.println("Ingrese el nuevo precio:"); precio =
-		 * sc.nextDouble(); if (precio <= 0)
-		 * System.out.println("El precio debe ser mayor que cero."); } while (precio <=
-		 * 0);
-		 * 
-		 * do { System.out.println("Ingrese el nuevo día:"); dia = sc.nextInt(); if (dia
-		 * < 1 || dia > 31) System.out.println("Ingrese un día válido (entre 1 y 31).");
-		 * } while (dia < 1 || dia > 31);
-		 * 
-		 * do { System.out.println("Ingrese el nuevo mes:"); mes = sc.nextInt(); if (mes
-		 * < 1 || mes > 12) System.out.println("Ingrese un mes válido (entre 1 y 12).");
-		 * } while (mes < 1 || mes > 12);
-		 * 
-		 * do { System.out.println("Ingrese el nuevo año:"); año = sc.nextInt(); if (año
-		 * < 1900 || año > 2999)
-		 * System.out.println("Ingrese un año válido (entre 1900 y 2999)."); } while
-		 * (año < 1900 || año > 2999);
-		 * 
-		 * String fecha = dia + "/" + mes + "/" + año; Viaje viaje = new Viaje(lugar,
-		 * fecha, precio); System.out.println("Se ha modificado viaje ? " +
-		 * ArrayViajes.modificarViaje(viaje));
-		 * 
-		 * }
-		 */
-	/**
-	 * Elimina un viaje llama al array o list donde se almacena los viajes
-	 * 
-	 * @param sc
-	 */
-	/*
-	 * public static void eliminarViajes(Scanner sc) {
-	 * System.out.println("Introduzca el lugar del viaje  para eliminarlo:"); String
-	 * lugar = sc.next(); System.out.println("el lugar es :" + lugar); Viaje viaje =
-	 * new Viaje(lugar); System.out.println("Se ha eliminado un viaje ? " +
-	 * ArrayViajes.eliminarViaje(viaje)); }
-	 */
-	private static void guardarCambios(Scanner sc) { 
+	private static void guardarCambios(Scanner sc) {
 		LecturaArchivo.escrituraViaje((List<Viaje>) ArrayViajes.listaViajes);
 	}
 
