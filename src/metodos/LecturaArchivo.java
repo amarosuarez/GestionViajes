@@ -97,8 +97,8 @@ public class LecturaArchivo {
 				String lugar = viaje.getLugar();
 				String fecha = viaje.getFecha();
 				double precio = viaje.getPrecio();
-				in.newLine();
 				in.write(lugar + "::" + fecha + "::" + precio);
+				in.newLine();
 			}
 
 		} catch (IOException e) {
