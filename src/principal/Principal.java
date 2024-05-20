@@ -22,6 +22,7 @@ public class Principal {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int opcion = 0;
+		char seguir = 's';
 		ArrayViajes.listaViajes = LecturaArchivo.obetenerViajes();
 		do {
 			opcion = imprimirMenu(sc);
@@ -47,7 +48,12 @@ public class Principal {
 				break;
 			}
 			case 6: {
-				System.out.println("Ha salido del programa");
+				if (!ArrayViajes.cambiosGuardados()) {
+					System.out.println("Hay cambios sin guardar, ¿desea salir? (S para salir, otra para volver)");
+					
+					seguir = sc.next().toLowerCase().charAt(0);
+					
+				}
 				break;
 			}
 
@@ -56,7 +62,9 @@ public class Principal {
 
 			}
 
-		} while (opcion != 6);
+		} while (opcion != 6 || seguir != 's');
+		
+		System.out.println("Ha salido del programa");
 	}
 
 	public static void eliminarViaje(Scanner sc) {
