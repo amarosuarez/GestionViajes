@@ -3,6 +3,7 @@ package metodos;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import objetos.Viaje;
 
@@ -71,7 +72,7 @@ public class ArrayViajes {
 
 		// Llamamos a la función que busca los viajes por lugar
 		listaViajes = buscaViajeLugar(lugar);
-
+		
 		// Comprobamos que la lista no esté vacía
 		if (!listaViajes.isEmpty()) {
 			// Mostramos cuantos viajes se han encontrado
@@ -83,31 +84,38 @@ public class ArrayViajes {
 			muestraViajes(listaViajes);
 			
 			do {
-				viajeSeleccionado = Utiles.leeNumero("¿Qué viaje deseas modificar?");
-			} while (viajeSeleccionado <= 0 || viajeSeleccionado > numViajes);
+				viajeSeleccionado = Utiles.leeNumero("¿Qué viaje deseas modificar? (0 para salir)");
+			} while (viajeSeleccionado < 0 || viajeSeleccionado > numViajes);
 			
-			// Inicializamos el objeto viaje al viaje a modificar
-			viaje = listaViajes.get(viajeSeleccionado-1);
-			
-			do {
-				// Mostramos el menú de opciones modificables y leemos la opción
-				opcion = Utiles.leeNumero("¿Qué deseas modificar?\n1. Precio\n2. Fecha\nPara salir pulse cualquier otro número");
+			// Comprobamos que no desee salir
+			if (viajeSeleccionado != 0) {
+				// Inicializamos el objeto viaje al viaje a modificar
+				viaje = listaViajes.get(viajeSeleccionado-1);
 				
-				switch (opcion) {
-				case 1: // Modifica el precio
-					modificaPrecio(viaje);
-					break;
-				case 2: // Modifica la fecha
-					modificaFecha(viaje);
-					break;
-				default: // Sale del programa
-					System.out.println("Saliendo...");
-					break;
-				}
+				do {
+					
+					// Mostramos el menú de opciones modificables y leemos la opción
+					opcion = Utiles.leeNumero("¿Qué deseas modificar?\n1. Precio\n2. Fecha\nPara salir pulse cualquier otro número");
 				
-			} while (opcion == 1 || opcion == 2);
+					switch (opcion) {
+					case 1: // Modifica el precio
+						modificaPrecio(viaje);
+						break;
+					case 2: // Modifica la fecha
+						modificaFecha(viaje);
+						break;
+					default: // Sale del programa
+						System.out.println("Saliendo...");
+						break;
+					}
+					
+				} while (opcion == 1 || opcion == 2);
+				
+				modificado = true;
+			} else {
+				System.out.println("Saliendo...");
+			}
 			
-			modificado = true;
 		} else {
 			System.out.println("No se han encontrado viajes con ese lugar");
 		}
@@ -148,6 +156,9 @@ public class ArrayViajes {
 		String fecha = diaS + "/" + mesS + "/" + año;
 		
 		viaje.setFecha(fecha);
+		
+		// Mostramos el mensaje
+		System.out.println("Fecha modificada");
 	}
 	
 	/**
@@ -162,7 +173,7 @@ public class ArrayViajes {
 		do {
 			// Le pedimos el nuevo precio
 			precio = Utiles.leeDoble("Introduzca el nuevo precio (Debe ser mayor que 0)");
-		} while (precio > 0);
+		} while (precio <= 0);
 		
 		// Cambiamos el precio
 		viaje.setPrecio(precio);
@@ -227,6 +238,7 @@ public class ArrayViajes {
 		// Devuelve los viajes encontrados
 		return listaEncontrados;
 	}
+	
 	public static boolean eliminaViaje(String lugar) {
 		// Variable donde se almacena si se ha modificado el viaje
 		boolean eliminado = false;

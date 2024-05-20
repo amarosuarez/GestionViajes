@@ -61,12 +61,9 @@ public class Utiles {
 				valorCorrecto = false;
 				System.out.println("Valor incorrecto");
 			} finally {
-				sc.next();
+				sc.nextLine();
 			}
 		} while (!valorCorrecto);
-		
-		// Limpiamos y cerramos el Scanner
-		sc.close();
 		
 		// Devolvemos el número
 		return num;
@@ -98,9 +95,6 @@ public class Utiles {
 				System.out.println("Valor incorrecto");
 			}
 		} while (!valorCorrecto);
-		
-		// Limpiamos y cerramos el Scanner
-		sc.close();
 		
 		// Devolvemos el número
 		return num;

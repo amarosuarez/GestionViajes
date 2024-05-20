@@ -56,14 +56,19 @@ public class Principal {
 
 			}
 
-		} while (opcion != 5);
+		} while (opcion != 6);
 	}
 
 	public static void modificarViaje(Scanner sc) {
 		sc.nextLine();
 		System.out.println("Indica el lugar del viaje");
 		String lugar = sc.nextLine();
-		ArrayViajes.modificaViaje(lugar);
+		
+		if (ArrayViajes.modificaViaje(lugar)) {
+			System.out.println("Viaje modificado");
+		} else {
+			System.out.println("No se ha modificado el viaje");
+		}
 	}
 	/**
 	 * funcion encargada de imprimir el menu y registar una oppcion escogida por el
@@ -203,7 +208,7 @@ public class Principal {
 	 * ArrayViajes.eliminarViaje(viaje)); }
 	 */
 	private static void guardarCambios(Scanner sc) { 
-	LecturaArchivo.escrituraViaje((List<Viaje>) ArrayViajes.listaViajes);
+		LecturaArchivo.escrituraViaje((List<Viaje>) ArrayViajes.listaViajes);
 	}
 
 }
